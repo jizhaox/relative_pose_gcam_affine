@@ -86,7 +86,7 @@ A numerical solver for the relative pose estimation with known vertical directio
 
      Note that all input parameters are one-dimensional arrays. To call the API, the input data need to be stored in a one-dimensional array in column-major order.
 
-* **Input for Demo**
+* **Input for API**
 
      `Line_iAll` (6\*2 matrix): 6-dimensional vectors of two Plucker lines expressed in the aligned multi-camera reference frame at time k.
 
