@@ -121,3 +121,7 @@ You can compile the package in Linux like this:
     {path}/build$./test4d ../data/data4d.bin
 
 `test3d_1AC_plane.cpp` , `test3d_2AC_plane.cpp` and `test4d.cpp` are the demos which show how to call the APIs.
+
+# Matlab Interface and Demo
+
+Please run `test_matlab/test_solver_AC.m`
