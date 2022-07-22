@@ -11,7 +11,8 @@ If you use this package in an academic work, please cite:
       title={Minimal Cases for Computing the Generalized Relative Pose using Affine Correspondences},
       author={Guan, Banglei and Zhao, Ji and Barath, Daniel and Fraundorfer, Friedrich},
       booktitle={International Conference on Computer Vision},
-      year={2021}
+      year={2021},
+      pages={6068-6077}
      }
 
 # 1AC plane solver
@@ -122,6 +123,6 @@ You can compile the package in Linux like this:
 
 `test3d_1AC_plane.cpp` , `test3d_2AC_plane.cpp` and `test4d.cpp` are the demos which show how to call the APIs.
 
-# Matlab Interface and Demo
+# Matlab Interface and Evaluation
 
-Please run `test_matlab/test_solver_AC.m`
+Please run `evaluation/test_solver_AC.m`

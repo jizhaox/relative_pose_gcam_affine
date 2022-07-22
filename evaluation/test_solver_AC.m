@@ -1,5 +1,5 @@
 clear;
-addpath('../solver')
+addpath('../mex')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1AC plane solver & inter-camera case %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 disp('--------------1AC plane solver & inter-camera case--------------')
