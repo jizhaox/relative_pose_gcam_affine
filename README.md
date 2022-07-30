@@ -120,7 +120,15 @@ You can compile the package in Linux like this:
 
 Compiled files using Ubuntu 16.04 + Matlab R2018b are provided. You can run the package in Matlab.
 
-`evaluation/test_solver_AC.m` is the demo which shows how to call the APIs.
+`evaluation/test_solver_AC.m` is the demo which shows how to call the APIs in Matlab.
 
 
+# Demo Usage in Folder "test"
 
+`test/src/test3d_inter_1AC_plane.cpp` , `test/src/test3d_inter_2AC_plane.cpp`, `test/src/test3d_intra_2AC_plane.cpp` , `test/src/test4d_inter_2AC_vertical.cpp` and `test/src/test4d_intra_2AC_vertical.cpp` are the demos which show how to call the APIs in C++. The input parameters of Demo are stored in folder "test/data".
+
+    {path}/build$./test3d_inter_1AC_plane ../data/data3d_inter_1AC_plane.bin
+    {path}/build$./test3d_inter_2AC_plane ../data/data3d_inter_2AC_plane.bin
+    {path}/build$./test3d_intra_2AC_plane ../data/data3d_intra_2AC_plane.bin
+    {path}/build$./test4d_inter_2AC_vertical ../data/data4d_inter_2AC_vertical.bin
+    {path}/build$./test4d_intra_2AC_vertical ../data/data4d_intra_2AC_vertical.bin
