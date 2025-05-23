@@ -1,13 +1,14 @@
-function [Image1, Image2, At, R_extrinsic_para, T_extrinsic_para, R_gt, t_gt] = generate_2AC_data(dof_type,match_type)
+function [Image1, Image2, At_33, R_extrinsic_para, T_extrinsic_para, R_gt, t_gt] = generate_2AC_data(dof_type,match_type)
 
 %% Two types of affine correspondence
 %% inter-cam affine correspondences refer to correspondences which are seen by different cameras over two consecutive views, which contain
 % (1) 1 affine correspondence: (cam1 at time i) <--> (cam2 at time j)
 % (2) 1 affine correspondence: (cam2 at time i) <--> (cam1 at time j)
 %% intra-cam affine correspondences refer to correspondences which are seen by the same camera over two consecutive views, which contain
-% (1) 1 affine correspondence: (cam1 at time i) <--> (cam1 at time i)
+% (1) 1 affine correspondence: (cam1 at time i) <--> (cam1 at time j)
 % (2) 1 affine correspondence: (cam2 at time i) <--> (cam2 at time j)
 
+match_info = match_type_gcam_ac(match_type);
 n_cam = 2;
 n_point = 2;
 
@@ -27,7 +28,6 @@ for ii = 1:n_cam
     % transformation from body reference to perspective camera references
     T_body_cam{ii} = [R_cam{ii} t_cam{ii}; 0 0 0 1];
 end
-
 
 %% define relative pose
 if strcmp(dof_type, '3DOF')
@@ -97,32 +97,18 @@ T_extrinsic_para = [cam_body_offset{1}, cam_body_offset{2}];
 Image1 = zeros(3, 2);
 Image2 = zeros(3, 2);
 At = zeros(2, 2, 2);
-if strcmp(match_type, 'inter')
-    % compute an AC using the frist plane
-    Image1(:,1) = x_i{1,1}(:,1);
-    Image2(:,1) = x_j{1,2}(:,1);
-    H_c1i_c2j = DLT_homography(x_i{1,1}(:,2:end)',x_j{1,2}(:,2:end)');
-    At(:,:,1) = get_affinetransformation(H_c1i_c2j, Image1(:,1), Image2(:,1));
-    % compute the other AC using the second plane
-    Image1(:,2) = x_i{2,2}(:,1);
-    Image2(:,2) = x_j{2,1}(:,1);
-    H_c2i_c1j = DLT_homography(x_i{2,2}(:,2:end)',x_j{2,1}(:,2:end)');
-    At(:,:,2) = get_affinetransformation(H_c2i_c1j, Image1(:,2), Image2(:,2));
-    
-elseif strcmp(match_type, 'intra')
-    % compute an AC using the frist plane
-    Image1(:,1) = x_i{1,1}(:,1);
-    Image2(:,1) = x_j{1,1}(:,1);
-    H_c1i_c1j = DLT_homography(x_i{1,1}(:,2:end)',x_j{1,1}(:,2:end)');
-    At(:,:,1) = get_affinetransformation(H_c1i_c1j, Image1(:,1), Image2(:,1));
-    % compute the other AC using the second plane
-    Image1(:,2) = x_i{2,2}(:,1);
-    Image2(:,2) = x_j{2,2}(:,1);
-    H_c2i_c2j = DLT_homography(x_i{2,2}(:,2:end)',x_j{2,2}(:,2:end)');
-    At(:,:,2) = get_affinetransformation(H_c2i_c2j, Image1(:,2), Image2(:,2));
-else
-    error('unsupported match type!')
+At_33 = zeros(3, 3, 2);
+
+for ii = 1:n_point
+    idx1 = match_info{ii}.idx1;
+    idx2 = match_info{ii}.idx2;
+
+    Image1(:,ii) = x_i{ii,idx1}(:,1);
+    Image2(:,ii) = x_j{ii,idx2}(:,1);
+    H_c1i_c2j = DLT_homography(x_i{ii,idx1}(:,2:end)',x_j{ii,idx2}(:,2:end)');
+    At(:,:,ii) = get_affinetransformation(H_c1i_c2j, Image1(:,ii), Image2(:,ii));
+
+    At_33(1:2, 1:2, ii) = At(:,:,ii);
 end
 
-
-
+check_constraint(Image1, Image2, At, R_extrinsic_para, T_extrinsic_para, R_gt, t_gt, match_info);

@@ -5,7 +5,7 @@ Source codes and Matlab mex files with demo code are provided in the package. Th
 
 # Reference
 
-[1] Banglei Guan, Ji Zhao, Daniel Barath, and Friedrich Fraundorfer. [**Minimal Solvers for Relative Pose Estimation of Multi-Camera Systems using Affine Correspondences**](https://rdcu.be/cYywK). International Journal of Computer Vision. DOI: https://doi.org/10.1007/s11263-022-01690-w 
+[1] Banglei Guan, Ji Zhao, Daniel Barath, and Friedrich Fraundorfer. [**Minimal Solvers for Relative Pose Estimation of Multi-Camera Systems using Affine Correspondences**](https://rdcu.be/cYywK). International Journal of Computer Vision. 131, 324-345, 2023. 
 
 [1] Banglei Guan, Ji Zhao, Daniel Barath, and Friedrich Fraundorfer. [**Minimal Cases for Computing the Generalized Relative Pose using Affine Correspondences**](https://openaccess.thecvf.com/content/ICCV2021/papers/Guan_Minimal_Cases_for_Computing_the_Generalized_Relative_Pose_Using_Affine_ICCV_2021_paper.pdf). International Conference on Computer Vision, 2021.
 
@@ -16,7 +16,8 @@ If you use this package in an academic work, please cite:
       author={Guan, Banglei and Zhao, Ji and Barath, Daniel and Fraundorfer, Friedrich},
       journal={International Journal of Computer Vision},
       year={2023},
-      doi={https://doi.org/10.1007/s11263-022-01690-w}
+      volume={131},
+      pages={324--345}
     }
 
     @inproceedings{guan2021minimal,
